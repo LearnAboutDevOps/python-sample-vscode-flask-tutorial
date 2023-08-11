@@ -13,23 +13,18 @@ stages:
     displayName: 'BuildandPush'
     pool:
       vmImage: ubuntu-latest
-    strategy:
-      matrix:
-        # Python27:
-        #   python.version: '2.7'
-        # Python35:
-        #   python.version: '3.5'
-        # Python36:
-        #   python.version: '3.6'
-        Python37:
-          python.version: '3.7'
     steps:
     - task: UsePythonVersion@0
       inputs:
-        versionSpec: '$(python.version)'
+        versionSpec: '3.7'
       displayName: 'Use Python $(python.version)'
-
-
+    
+    - task: Bash@3
+      displayName: 'Install tools'
+      inputs:
+        targetType: 'inline'
+        script: python -m pip install --upgrade pip setuptools wheel
+      
     - task: Bash@3
       displayName: 'Install dependencies'
       inputs:
