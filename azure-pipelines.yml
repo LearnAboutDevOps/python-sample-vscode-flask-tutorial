@@ -19,7 +19,7 @@ stages:
     - task: UsePythonVersion@0
       displayName: '$(pythonVersion)'
       inputs:
-        versionSpec: '$(pythonVersion)'
+        versionSpec: '{{ pythonVersion }}'
       
     - task: Bash@3
       displayName: 'Install tools'
