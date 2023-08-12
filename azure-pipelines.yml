@@ -28,7 +28,7 @@ stages:
         script: python -m pip install --upgrade pip setuptools wheel
       
     - task: Bash@3
-      displayName: 'nstall requirements'
+      displayName: 'Install requirements'
       inputs:
         targetType: 'inline'
         script: |
@@ -44,7 +44,7 @@ stages:
         rootFolderOrFile: '$(Build.SourcesDirectory)'
         includeRootFolder: false
         archiveType: 'zip'
-        archiveFile: '$(Build.ArtifactStagingDirectory)/Application$(Build.BuildId).zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)'#/Application$(Build.BuildId).zip'
         replaceExistingArchive: true
         #verbose: # (no value); this input is optional
     
@@ -54,7 +54,7 @@ stages:
       displayName: 'List content'
       continueOnError: true
 
-    - publish: $(Build.ArtifactStagingDirectory)/Application$(Build.BuildId).zip
+    - publish: $(Build.ArtifactStagingDirectory)'#/Application$(Build.BuildId).zip
       displayName: 'Upload package'
       artifact: drop
 
