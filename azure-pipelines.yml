@@ -14,7 +14,7 @@ stages:
     pool:
       vmImage: ubuntu-latest
     variables:
-      pythonVersion: '3.7'
+      pythonVersion: '3.10'
     steps:
     - task: UsePythonVersion@0
       displayName: 'Python Version : {{ pythonVersion }}'
@@ -44,7 +44,7 @@ stages:
         rootFolderOrFile: '$(Build.SourcesDirectory)'
         includeRootFolder: false
         archiveType: 'zip'
-        archiveFile: '$(Build.ArtifactStagingDirectory)'#/Application$(Build.BuildId).zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/Application$(Build.BuildId).zip'
         replaceExistingArchive: true
         #verbose: # (no value); this input is optional
     
@@ -54,7 +54,7 @@ stages:
       displayName: 'List content'
       continueOnError: true
 
-    - publish: $(Build.ArtifactStagingDirectory)'#/Application$(Build.BuildId).zip
+    - publish: $(Build.ArtifactStagingDirectory)/Application$(Build.BuildId).zip
       displayName: 'Upload package'
       artifact: drop
 
