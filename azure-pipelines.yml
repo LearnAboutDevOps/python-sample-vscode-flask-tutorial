@@ -21,11 +21,11 @@ stages:
       inputs:
         versionSpec: '$(pythonVersion)'
       
-    - task: Bash@3
-      displayName: 'Install tools'
-      inputs:
-        targetType: 'inline'
-        script: python -m pip install --upgrade pip setuptools wheel
+    # - task: Bash@3
+    #   displayName: 'Install tools'
+    #   inputs:
+    #     targetType: 'inline'
+    #     script: python -m pip install --upgrade pip setuptools wheel
       
     - task: Bash@3
       displayName: 'Install requirements'
@@ -56,7 +56,7 @@ stages:
 
     - publish: $(Build.ArtifactStagingDirectory)/Application$(Build.BuildId).zip
       displayName: 'Upload package'
-      artifact: drop
+      artifact: flaskApp
 
     # - script: |
     #      python -m venv antenv
